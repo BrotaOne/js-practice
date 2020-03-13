@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+      }
+      table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin: 10px auto;
+      }
+      td {
+        border: 1px solid #e1e1e1;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+      .current {
+        background: #1d2088;
+      }
+      .wrap {
+        background: #00a0e9;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="jsLayout">
+      <tbody>
+        <tr>
+          <td class="current"></td>
+          <td class="wrap"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="wrap"></td>
+          <td class="wrap"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="jquery.js"></script>
+    <script>
+      // jquery实现
+      // $(function() {
+      //   $("#jsLayout td").on("click", function() {
+      //     $("#jsLayout td").removeClass()
+      //     $(this).addClass("current")
+      //     let y = $("#jsLayout tr").index($(this).parent()[0])
+      //     let x = $(this)
+      //       .parent()
+      //       .children()
+      //       .index($(this))
+      //     console.log(x, y)
+      //     for (let i = y >= 1 ? y - 1 : 0; i <= (y < 9 ? y + 1 : 9); i++)
+      //       for (let j = x >= 1 ? x - 1 : 0; j <= (x < 9 ? x + 1 : 9); j++)
+      //         if (i == y && j == x);
+      //         else
+      //           $("#jsLayout tr")
+      //             .eq(i)
+      //             .children()
+      //             .eq(j)
+      //             .addClass("wrap")
+      //   })
+      // })
+
+      // 原生js实现
+      window.onload = function() {
+        let tbody = document
+          .getElementById("jsLayout")
+          .getElementsByTagName("tbody")[0]
+        tbody.onclick = function(e) {
+          console.log(e.target)
+          console.log(e)
+          let x, y
+          for (let i = 0; i < tbody.children.length; i++)
+            for (let j = 0; j < tbody.children[i].children.length; j++) {
+              tbody.children[i].children[j].className = ""
+              if (tbody.children[i].children[j] === e.target) {
+                y = i
+                x = j
+              }
+            }
+          for (let i = 0; i < tbody.children.length; i++)
+            for (let j = 0; j < tbody.children[i].children.length; j++) {
+              if (i >= y - 1 && i <= y + 1)
+                if (j >= x - 1 && j <= x + 1)
+                  if (i == y && j == x);
+                  else tbody.children[i].children[j].className = "wrap"
+            }
+
+          e.target.setAttribute("class", "current")
+        }
+      }
+    </script>
+  </body>
+</html>
